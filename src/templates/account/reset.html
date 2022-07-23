@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<br>
+<br>
+<br>
+<div class="container">
+	
+
+	<p>Please enter your new password twice so we can varify you typed it correctly</p>
+   
+
+
+	<form method="POST" action="">
+		{% csrf_token %}
+		{{form|crispy}}
+        <!-- form is default by Django-->
+		<br>
+		<input class="btn btn-primary" type="submit" value="Update Password">
+	</form>
+</div>
+<br>
+<br>
+<br>
+
+{% endblock content %}

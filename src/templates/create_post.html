@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}
+ <title> create post </title>
+{% endblock %}
+
+{% block content %}
+ <div class='container'>
+   <div class="row">
+     <div class="col-md-12 justify-content-center my-5">
+     
+          <form method="POST" enctype="multipart/form-data">
+                     {% csrf_token %}
+                            {{post_form.media}}
+                            {{post_form|crispy}}
+                     <input type="submit" value="Submit post" class="btn btn-success">
+          </form>
+
+     </div>
+   </div> 
+ </div>
+
+
+
+{% endblock %}

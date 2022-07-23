@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+ <title>Login</title>
+{% endblock %}
+
+  {% block content %}
+
+
+    </br>
+    <section id="contact" class="contact">
+      <div class="container">
+        <div class="row justify-content-center">
+
+         <div class="col-lg-6 ">
+             {% for message in messages %}
+                  <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+                
+                    {{ message }}
+                 </div>
+             {% endfor %}
+            <form action="" method="post" role="form">
+              {%csrf_token%}
+              <div class="row">
+                  <h1 class="text-center">Login Your Account</h1>
+                  </br>
+                  </br>
+                  <div class="form-group mt-3">
+                  <input type="email" name="email" class="form-control" id="name" placeholder="Email" required>
+                  </div>
+                <div class="form-group mt-3">
+                  <input type="password" class="form-control" name="password" id="email" placeholder="Password" required>
+                </div>
+              </div>
+               <p>Create An<a href="{% url 'account'%}"> Account</a></p>
+               <p><a href="{% url 'reset_password'%}"> Forgot Password?</a></p>
+              <div class="my-3">
+                <div class="error-message"></div>
+
+              </div>
+              <div class="text-center"><button type="submit" class="btn btn-success">Login</button></div>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+  {% endblock %}

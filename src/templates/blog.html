@@ -1,0 +1,154 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block title %}
+ <title> blog page </title>
+{% endblock %}
+{% block blogactive %} active {% endblock %}
+
+{% block content %}
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="container">
+
+        <ol>
+      
+          <li><a href="{% url 'index'%}">Home</a></li>
+          <li>Blog</li>
+         
+     
+          
+        </ol>
+        <h2>Blog</h2>
+
+                {% if request.user.is_superuser and request.user.is_authenticated  %}
+                     <h2><a class="btn btn-success mt-3 justify-content-center" href="{% url 'blog:create_post' %}"> Create Post </a></h2>
+    
+                  
+                   
+                {% endif %}
+
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+    <!-- ======= Blog Section ======= -->
+    <section id="blog" class="blog">
+      <div class="container" data-aos="fade-up">
+
+        <div class="row">
+
+          <div class="col-md-8 entries">
+
+
+
+           {% for post in posts %}
+
+            <article class="entry">
+
+              <div class="entry-img">
+                  {% if post.thumbnail %}
+                     <img  style=" max-width:850px;" src="{{ post.get_image_url }}" alt="image not found">
+                  {% endif %}
+              </div>
+
+              <h2 class="entry-title">
+                <a href="{{ post.get_absolute_url }}">{{post.headline}}</a>
+              </h2>
+
+              <div class="entry-meta">
+                <ul>
+                  <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-single.html">{{post.author}}</a></li>
+                  <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-single.html"><time datetime="2020-01-01">{{post.published}}</time></a></li>
+                  <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-single.html">12 Comments</a></li>
+                  <li class="d-flex align-items-center"><a href="blog-single.html"> Category : {{post.catagory}}</a></li>
+                </ul>
+              </div>
+
+              <div class="entry-content">
+                <p>
+                   {{post.body | safe | truncatewords:30 | linebreaks }}
+                </p>
+                <div class="read-more">
+                  <a href="{{ post.get_absolute_url }}">Read More</a>
+                </div>
+              </div>
+
+            </article><!-- End blog entry -->
+           {% endfor %}
+
+            
+
+
+          </div><!-- End blog entries list -->
+
+          <div class="col-md-4">
+
+            <div class="sidebar">
+
+              <h3 class="sidebar-title">Search</h3>
+              <div class="sidebar-item search-form">
+                <form action="{% url 'blog:search' %}" method=POST>
+                  {% csrf_token %}
+                  <input type="text" name="searched">
+                  <button type="submit"><i class="bi bi-search"></i></button>
+                </form>
+              </div><!-- End sidebar search formn-->
+
+
+
+              <h3 class="sidebar-title"> Post Categories</h3>
+              <div class="sidebar-item categories">
+                <ul>
+                  <li><b><a class="text-success" href="{% url 'blog:blog' %}">All</a></b></li>
+                 {% for cat in category %}
+                  <li> <b><a class="text-success " href="{% url 'blog:blog' %}?category={{cat.name}}">{{cat.name}}</a></b></li>
+                 {% endfor %}
+                </ul>
+              </div><!-- End sidebar categories-->
+
+              <h3 class="sidebar-title">Recent Posts</h3>
+              <div class="sidebar-item recent-posts">
+                {% for post in posts %}
+                <div class="post-item clearfix">
+                  {% if post.thumbnail %}
+                     <img src="{{ post.thumbnail.url }}" alt="image not found">
+                  {% endif %}
+                  <h4><a href="{{ post.get_absolute_url }}">{{ post.headline }}</a></h4>
+                  <time datetime="2020-01-01">{{post.published}}</time>
+                </div>
+                {% endfor %}
+              </div><!-- End sidebar recent posts-->
+
+              <h3 class="sidebar-title">Tags</h3>
+              <div class="sidebar-item tags">
+                <ul>
+                  <li><a href="#">App</a></li>
+                  <li><a href="#">IT</a></li>
+                  <li><a href="#">Business</a></li>
+                  <li><a href="#">Mac</a></li>
+                  <li><a href="#">Design</a></li>
+                  <li><a href="#">Office</a></li>
+                  <li><a href="#">Creative</a></li>
+                  <li><a href="#">Studio</a></li>
+                  <li><a href="#">Smart</a></li>
+                  <li><a href="#">Tips</a></li>
+                  <li><a href="#">Marketing</a></li>
+                </ul>
+              </div><!-- End sidebar tags-->
+
+            </div><!-- End sidebar -->
+
+          </div><!-- End blog sidebar -->
+
+        </div>
+        {% include 'paginator.html' with page_ob=posts %}
+      </div>
+    </section><!-- End Blog Section -->
+
+
+  </main><!-- End #main -->
+
+{% endblock %}

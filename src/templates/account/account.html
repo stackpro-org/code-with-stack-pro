@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+ <title> Your account </title>
+{% endblock %}
+{% block accountactive %} active {% endblock %}
+
+
+
+  {% block content %}
+
+     <!-- ======= Contact Section ======= -->
+
+
+    </br>
+    <section id="contact" class="contact">
+      <div class="container">
+        <div class="row justify-content-center">
+
+         <div class="col-lg-6 ">
+             {% for message in messages %}
+                  <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+
+                    {{ message }}
+                 </div>
+             {% endfor %}
+            <form action="" method="post" role="form">
+
+                {% csrf_token %}
+              <div class="row">
+                  <h3 class="text-center">REGISTER ACCOUNT</h3>
+                  </br>
+                  </br>
+                  <div class="form-group mt-3">
+                  <input type="text" name="user_name" class="form-control" id="name" placeholder="User Name" required>
+                  </div>
+                  <div class="form-group mt-3">
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                  </div>
+                  <div class="form-group mt-3">
+                  <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
+                  </div>
+                  <div class="form-group mt-3">
+                  <input type="password" class="form-control" name="confirm_password" id="password" placeholder="Confirm Password" required>
+                  </div>
+                <p>Have an account? <a href="{% url 'login'%}">Login now</a></p>
+              <div class="my-3">
+                <div class="error-message"></div>
+
+              </div>
+              <div class="text-center"><button type="submit" class="btn btn-success">Register</button></div>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Contact Section -->
+
+
+  {% endblock %}

@@ -1,0 +1,91 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+ <title> portfolio-details </title>
+{% endblock %}
+{% block portfolioactive %} active {% endblock %}
+{% block content %}
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="container">
+
+        <ol>
+          <li><a href="{% url 'index'%}">Home</a></li>
+          <li>Portfolio Details</li>
+        </ol>
+        <h2>Portfolio Details</h2>
+
+      </div>
+    </section><!-- End Breadcrumbs -->
+     
+    <!-- ======= Portfolio Details Section ======= -->
+    <section id="portfolio-details" class="portfolio-details">
+      <div class="container">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-8">
+            <div class="portfolio-details-slider swiper-container">
+              
+              <div class="swiper-wrapper align-items-center">
+
+                {% if post.image1  %}
+                <div class="swiper-slide">
+                  <img src="{{post.image1.url}}" alt="">
+                </div>
+                {% endif %}
+
+                {% if post.image2  %}
+                <div class="swiper-slide">
+                  <img src="{{post.image2.url}}" alt="">
+                </div>
+                {% endif %}
+
+                {% if post.image3  %}
+                <div class="swiper-slide">
+                  <img src="{{post.image3.url}}" alt="">
+                </div>
+                {% endif %}
+
+
+                {% if post.image4  %}
+                <div class="swiper-slide">
+                  <img src="{{post.image4.url}}" alt="">
+                </div>
+                {% endif %}
+
+               
+              </div>
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
+
+
+          <div class="col-lg-4">
+            <div class="portfolio-info">
+              <h3>Project information</h3>
+              <ul>
+                <li><strong>Category</strong>: {{post.catagory}}</li>
+                <li><strong>Client</strong>: {{post.client_name}}</li>
+                <li><strong>Project date</strong>: {{post.project_date}}</li>
+                <li><strong>Project URL</strong>: <a href="{{post.Project_url}}">{{post.Project_url}}</a></li>
+              </ul>
+            </div>
+            <div class="portfolio-description">
+              <h2>Here is the details</h2>
+              <p>
+                   {{post.description}}
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Portfolio Details Section -->
+
+  </main><!-- End #main -->
+{% endblock %}

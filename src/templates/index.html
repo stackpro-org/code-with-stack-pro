@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+ <title> Home page </title>
+{% endblock %}
+{% block homeactive %} active {% endblock %}
+{% block content %}
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero">
+    <div class="hero-container">
+      <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
+
+        <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
+
+        <div class="carousel-inner" role="listbox">
+
+          <!-- Slide 1 -->
+          {% for sld in herodata %}
+          <div class="carousel-item {% if forloop.first %} active {%endif%}" style="background: url({{sld.slideImg.url}})">
+            <div class="carousel-container">
+              <div class="carousel-content">
+                <h2 class="animate__animated animate__fadeInDown">{{sld.title}}<span> {{sld.lasttitle}}</span></h2>
+                <p class="animate__animated animate__fadeInUp">{{sld.description}}</p>
+                <a href="{{sld.button}}" class="btn-get-started animate__animated animate__fadeInUp">Github Repo</a>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+
+        </div>
+
+        <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+        </a>
+
+        <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+          <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+        </a>
+
+      </div>
+    </div>
+  </section><!-- End Hero -->
+  <main id="main">
+
+
+
+    <!-- ======= Featured Section ======= -->
+    <section id="featured" class="featured">
+      <div class="container">
+
+        <div class="row">
+          {% for feature in featuredata %}
+          <div class="col-lg-4">
+            <div class="icon-box">
+              <i class="bi bi-card-checklist"></i>
+              <h3><a href="{{feature.url}}">{{feature.title}}</a></h3>
+              <p>{{feature.text}}</p>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+
+      </div>
+    </section><!-- End Featured Section -->
+    {% block about %}
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+      <div class="container">
+
+        <section id="about" class="about">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-lg-6">
+            <img src="{{aboutdata.0.img.url}}" class="img-fluid" alt="about.img">
+          </div>
+          <div class="col-lg-6 pt-4 pt-lg-0 content">
+            <h3>{{aboutdata.0.title}}</h3>
+            <p class="fst-italic">
+            {{aboutdata.0.text1}}
+            </p>
+
+            <p>
+              {{aboutdata.0.text2}}
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+      </div>
+    </section><!-- End About Section -->
+    {% endblock %}
+    <!-- ======= Services Section ======= -->
+    <section id="services" class="services">
+      <div class="container">
+
+        <div class="row">
+          {% for srv in servicedata %}
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+            <div class="icon-box">
+              <div class="icon"><i class="bx bxl-dribbble"></i></div>
+              <h4><a href="{{srv.url}}">{{srv.title}}</a></h4>
+              <p>{{srv.text}}</p>
+            </div>
+          </div>
+          {% endfor %}
+
+        </div>
+
+      </div>
+    </section><!-- End Services Section -->
+
+    <!-- ======= Clients Section ======= -->
+    <section id="clients" class="clients">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>{{clientdata.0.title}}</h2>
+          <p>{{clientdata.0.text}}</p>
+        </div>
+
+        <div class="clients-slider swiper-container">
+          <div class="swiper-wrapper align-items-center">
+
+                 <!-- Here we used data from many to many relation django -->
+                  {% for data in clientdata %}
+
+                    {% for da in data.client_image.all %}
+        
+                      <div class="swiper-slide"><img src="{{da.image.url}}" class="img-fluid" alt=""></div>
+                   
+                      {% endfor %}
+        
+                  {% endfor %}
+                    
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+      </div>
+    </section><!-- End Clients Section -->
+
+  </main><!-- End #main -->
+{% endblock %}

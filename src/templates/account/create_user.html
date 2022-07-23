@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    	<form method="POST" action="?next={{ request.META.HTTP_REFERER }}">
+			{% csrf_token %}
+			{{create_user.as_p}}
+			<input class="btn btn-primary btn-lg btn-block" type="submit" value="Login">
+		</form>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!-- ======= Top Bar ======= -->
+  <section id="topbar" class="d-flex align-items-center">
+    <div class="container d-flex justify-content-center justify-content-md-between">
+      <div class="contact-info d-flex align-items-center">
+        <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:contact@example.com">{{top_headerdata.0.email}}</a></i>
+        <i class="bi bi-phone d-flex align-items-center ms-4"><span>{{top_headerdata.0.number}}</span></i>
+      </div>
+      <div class="social-links d-none d-md-flex align-items-center">
+
+          {% if user.is_authenticated%}
+               <a class="d-flex align-items-center ms-4" href="{%url 'logout'%}">Logout</a>
+               <a class="d-flex align-items-center ms-4" style="color:tomato;">{{user.username}}</a>
+          {% else %}
+               <br/>
+              <a class="d-flex align-items-center ms-4" style="color:tomato;" href="{% url 'index'%}">Register</a></p>
+              <a class="d-flex align-items-center ms-4" style="color:tomato" href="{% url 'login'%}">Login</a></p>
+          {% endif %}
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="d-flex align-items-center">
+    <div class="container d-flex justify-content-between align-items-center">
+
+      <div class="logo">
+        <h1><a href="{% url 'index'%}">{{headerdata.0.logo}}</a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      </div>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="{% block homeactive %} {% endblock %}" href="{% url 'index'%}">Home</a></li>
+          <li><a class="{% block aboutactive %} {% endblock %}" href="{% url 'about'%}">About</a></li>
+          <li><a class="{% block serviceactive %} {% endblock %}" href="{% url 'services'%}">Services</a></li>
+          <li><a class="{% block portfolioactive %} {% endblock %}" href="{% url 'portfolio'%}">Portfolio</a></li>
+          <li><a class="{% block teamactive %} {% endblock %}" href="{% url 'team'%}">Team</a></li>
+          <li><a class="{% block pricingactive %} {% endblock %}" href="{% url 'index'%}">Pricing</a></li>
+          <li><a class="" href="{% url 'chat:friend_list'%}">Friends</a></li>
+          <li><a class="{% block blogactive %} {% endblock %}" href="{% url 'blog:blog'%}">Blog</a></li>
+          <li><a class="{% block contactactive %}{% endblock %}" href="{% url 'contact'%}">Contact</a></li>
+
+          {% if user.is_authenticated%}
+             <li><a href="{% url 'profile'%}">Account</a></li>
+          {% else %}
+             <li><a href="{% url 'account'%}">Sign Up</a></li>
+          {% endif %}
+
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->

@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+ <title> partfolio page  </title>
+{% endblock %}
+{% block portfolioactive %} active {% endblock %}
+
+{% block content %}
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="container">
+
+        <ol>
+          <li><a href="{% url 'index'%}">Home</a></li>
+          <li>Portfolio</li>
+        </ol>
+        <h2>Portfolio</h2>
+
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+    <!-- ======= Portfolio Section ======= -->
+    <section id="portfolio" class="portfolio">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-lg-12 d-flex justify-content-center">
+            <ul id="portfolio-flters">
+              <a class=" btn btn-success m-1" href="{% url 'portfolio' %}"> All</a>
+              {% for cat in category %}
+                <a class=" btn btn-success m-1" href="{% url 'portfolio' %}?categ={{cat.name}}">{{cat.name}}</a>
+              {% endfor %}
+             
+            </ul>
+          </div>
+        </div>
+    
+
+      
+          <!-- Here we used data from many to many relation django -->
+
+        <div class="row portfolio-container">
+
+
+          {% for port in portfolio %}
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <div class="portfolio-wrap">
+
+
+                  <img src="{{port.image1.url}}" class="img-fluid" alt="">
+          
+
+
+              <div class="portfolio-info">
+                <h4>{{port.title}}</h4>
+                <div class="portfolio-links">
+                  <a href="{{port.image1.url}}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 1"><i class="bx bx-plus"></i></a>
+                  <a href="{% url 'details' port.slug %}" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+      
+        </div>
+
+      </div>
+    </section><!-- End Portfolio Section -->
+
+
+  </main><!-- End #main -->
+
+{% endblock %}

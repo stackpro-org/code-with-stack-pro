@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+ <title> team page </title>
+{% endblock %}
+{% block teamactive %} active {% endblock %}
+{% block content %}
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="container">
+
+        <ol>
+          <li><a href="{% url 'index'%}">Home</a></li>
+          <li>Team</li>
+        </ol>
+        <h2>Team</h2>
+
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+    <!-- ======= Team Section ======= -->
+    <section id="team" class="team">
+      <div class="container">
+
+        <div class="row">
+    
+          {% for team in teamdata %}
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+            <div class="member">
+              <img src="{{team.img.url}}" alt="">
+              <h4>{{team.name}}</h4>
+              <span>{{team.title}}</span>
+              <p>
+                {{team.text}}
+              </p>
+              <div class="social">
+                <a href="{{team.twitter}}"><i class="bi bi-twitter"></i></a>
+                <a href="{{team.facebook}}"><i class="bi bi-facebook"></i></a>
+                <a href="{{team.instagram}}"><i class="bi bi-instagram"></i></a>
+                <a href="{{team.linkedin}}"><i class="bi bi-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+          <a href="{% url 'pdf' %}">PDF</a>
+       
+
+        </div>
+
+      </div>
+    </section><!-- End Team Section -->
+
+  </main><!-- End #main -->
+{% endblock %}

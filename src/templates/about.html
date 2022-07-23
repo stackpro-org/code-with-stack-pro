@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+ <title> about page </title>
+{% endblock %}
+{% block aboutactive %} active {% endblock %}
+
+{% block content %}
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="container">
+
+        <ol>
+          <li><a href="{% url 'index'%}">Home</a></li>
+          <li>About Us</li>
+        </ol>
+        <h2>About Us</h2>
+
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+      <div class="container">
+
+        <section id="aboutus" class="about">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-lg-6">
+            <img src="{{aboutdata.0.img.url}}" class="img-fluid" alt="about.img">
+          </div>
+          <div class="col-lg-6 pt-4 pt-lg-0 content">
+            <h3>{{aboutdata.0.title}}</h3>
+            <p class="fst-italic">
+            {{aboutdata.0.text1}}
+            </p>
+
+            <p>
+              {{aboutdata.0.text2}}
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+      </div>
+    </section><!-- End About Section -->
+
+    <!-- ======= Counts Section ======= -->
+    <section id="counts" class="counts">
+      <div class="container">
+
+        <div class="row no-gutters">
+
+
+
+          {% for count in countdata %}
+          <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch">
+            <div class="count-box">
+              <i class="bi bi-emoji-smile"></i>
+              <span data-purecounter-start="0" data-purecounter-end="{{count.number}}" data-purecounter-duration="1" class="purecounter"></span>
+              <p><strong>{{count.subtitle}}</strong>{{count.shorttext}}</p>
+              <a href="{{count.url}}">Find out more &raquo;</a>
+            </div>
+          </div>
+          {% endfor %}
+
+        </div>
+
+      </div>
+    </section><!-- End Counts Section -->
+
+    <!-- ======= Clients Section ======= -->
+    <section id="clients" class="clients">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>{{clientdata.0.title}}</h2>
+          <p>{{clientdata.0.text}}</p>
+          
+
+
+    
+        </div>
+
+        <div class="clients-slider swiper-container">
+          <div class="swiper-wrapper align-items-center">
+
+
+          <!-- Here we used data from many to many relation django -->
+          {% for data in clientdata %}
+
+            {% for da in data.client_image.all %}
+
+              <div class="swiper-slide"><img src="{{da.image.url}}" class="img-fluid" alt=""></div>
+           
+              {% endfor %}
+
+          {% endfor %}
+            
+
+
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+      </div>
+    </section><!-- End Clients Section -->
+
+    <!-- ======= Testimonials Section ======= -->
+    <section id="testimonials" class="testimonials">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>{{testdata1.0.title}}</h2>
+          <p>{{testdata1.0.subtitle}}</p>
+        </div>
+
+        <div class="row">
+          {% for test in testdata2 %}
+          <div class="col-lg-6">
+            <div class="testimonial-item">
+              <img src="{{test.img.url}}" class="testimonial-img" alt="">
+              <h3>{{test.name}}</h3>
+              <h4>{{test.title}}</h4>
+              <p>
+                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                  {{test.text}}
+                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+              </p>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+
+      </div>
+    </section><!-- End Testimonials Section -->
+
+  </main><!-- End #main -->
+
+
+{% endblock %}

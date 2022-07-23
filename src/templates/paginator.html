@@ -1,0 +1,21 @@
+
+
+
+ <div class="blog-pagination mb-5">
+ <ul class="justify-content-center">
+ 
+      
+      {% if page_ob.has_previous %}
+           <a class="btn btn-dark mx-2" href="?page={{page_ob.previous_page_number}}">Back Page</a>
+      {% endif %}
+
+         <a class="btn btn-success  mx-2"  href="#">Current Page</a>
+ 
+ 
+      {% if page_ob.has_next %}
+           <a class="btn btn-dark  mx-2" href="?page={{page_ob.next_page_number}}">Next Page</a>
+      {% endif %}
+      
+ 
+ </ul>
+ </div>

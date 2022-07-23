@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+ <title> Profile Home </title>
+{% endblock %}
+{% block content %}
+
+<style type="text/css">
+	#user_pic{
+		height: 200px;
+		width: 200px;
+		border-radius: 50%;
+		border:5px solid #888;
+		margin:0 auto;
+		object-fit: cover;
+	}
+
+	#user-info-box{
+		text-align: center;
+	}
+</style>
+
+<div class="main-container container my-5">
+	<br>
+	<div class="row">
+		<div class="col-md-4">
+			<div class="card card-body" id="user-info-box">
+				<img id="user_pic" src="{{profile.profile_image.url}}">
+				<br>
+				<h2>{{profile}}</h2>
+				{% if pro  %}
+				<h5> Pro member</h5>
+				{% endif %}
+				<p>Email: {{profile.email}}</p>
+				<hr>
+				<p>{{profile.bio}}</p>
+				<hr>
+				{% if profile == user%}
+				<a class="btn btn-info btn-block" href="{% url 'update_profile'  %}">Edit Profile</a>
+				{% endif %}
+				<br>
+				<a class="btn btn-success btn-block" href="{% url 'chat:personal_chat' profile.id%}">Message</a>
+				<br>
+				<a class="btn btn-success btn-block" href="{% url 'account_pdf' %}">PDF</a>
+			</div>
+		</div>
+	 {% if pro  %}
+		<div class="col-md-8">
+			<div class="card card-body">
+				
+			
+			
+				<hr>
+				<table class="table">
+					<thead class="thead-dark">
+						<tr>
+							<th>User ID</th>
+							<th>Join Date</th>
+							<th>Membership</th>
+							<th>Payment</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tr>
+						<td>{{profile.user_id_number}}</td>
+						<td>{{purchase.requested_time}}</td>
+						<td>{{purchase.plan_name}}</td>
+						<td>৳ {{purchase.How_much_you_paid}}</td>
+						
+					</tr>
+				</table>
+			</div>
+		</div>
+	 {% endif %}
+	</div>
+</div>
+
+{% endblock %}
+

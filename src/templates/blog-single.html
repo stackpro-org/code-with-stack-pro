@@ -1,0 +1,197 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+{% load crispy_forms_tags %}
+ <title> portfolio-details </title>
+{% endblock %}
+{% block portfolioactive %} active {% endblock %}
+{% block content %}
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="container">
+
+        <ol>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="blog.html">Blog</a></li>
+        </ol>
+
+          {% if request.user.is_superuser and request.user.is_authenticated  %}
+          
+              <div class="d-flex ">
+                  <a class="btn btn-warning mt-3  mr-3" href="{% url 'blog:delete' post.id post.slug %}">Delete Post</a>
+                  <a class="btn btn-danger mt-3  mx-3" href="{% url 'blog:edit' post.id post.slug %}"> Edit Post</a>
+              </div>
+         
+          {% endif %}
+
+
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+    <!-- ======= Blog Single Section ======= -->
+    <section id="blog" class="blog">
+      <div class="container" data-aos="fade-up">
+
+        <div class="row">
+
+          <div class="col-lg-8 entries">
+
+            <article class="entry entry-single">
+
+              <div class="entry-img">
+                  {% if post.thumbnail %}
+                     <img src="{{ post.thumbnail.url }}" alt="image not found">
+                  {% endif %}
+              </div>
+
+              <h2 class="entry-title">
+                {{post.headline}}
+              </h2>
+
+              <div class="entry-meta">
+                <ul>
+                  <li class="d-flex align-items-center"><i class="bi bi-person"></i> {{post.author}}</li>
+                  <li class="d-flex align-items-center"><i class="bi bi-clock"></i> {{post.published}}</time></li>
+                  <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> 12 Comments</li>
+                  <li class="d-flex align-items-center"> Category : {{post.catagory}}</li>
+                </ul>
+              </div>
+
+              <div class="entry-content">
+                
+                   {{post.body | safe }}
+              
+
+              </div>
+
+              <div class="entry-footer">
+                <i class="bi bi-folder"></i>
+                <ul class="cats">
+                  <li><a href="#">Business</a></li>
+                </ul>
+
+                <i class="bi bi-tags"></i>
+                <ul class="tags">
+                  <li><a href="#">Creative</a></li>
+                  <li><a href="#">Tips</a></li>
+                  <li><a href="#">Marketing</a></li>
+                </ul>
+              </div>
+
+            </article><!-- End blog entry -->
+
+
+            <div class="blog-comments">
+
+              {% with comments.count as total_comments %}
+                <h2>{{ total_comments }} comments</h2>
+              {% endwith %}
+
+
+              {% if new_comment %}
+                  <div class="alert alert-success" role="alert">
+                            Your comment is awaiting moderation
+                  </div>
+              {% else %}
+              <div class="reply-form">
+                <h4>Leave a Reply</h4>
+                <p>Your email address will not be published. Required fields are marked * </p>
+
+                   <form method="post" style="margin-top: 1.3em;">
+                        {{ comment_form | crispy }}
+                        {% csrf_token %}
+                        <br/>
+                        <button type="submit" class="btn btn-secondary">Post Comment</button>
+                   </form>
+                </div>
+                 <!-- comments -->
+
+                  {% for comment in comments %}
+                        <div class="comments" style="padding: 10px;">
+                            <p style="font-weight:bold">
+                                {{ comment.name }}
+                                <span class=" text-muted font-weight-normal">
+                                    {{ comment.date }}
+                                </span>
+                            </p>
+                            {{ comment.comment | linebreaks }}
+                        </div>
+                  {% endfor %}
+               {%endif%}
+
+
+            </div><!-- End blog comments -->
+
+
+          </div><!-- End blog entries list -->
+
+          <div class="col-lg-4">
+
+            <div class="sidebar">
+
+              <h3 class="sidebar-title">Search</h3>
+              <div class="sidebar-item search-form">
+                  <form action="{% url 'blog:search' %}" method=POST>
+                  {% csrf_token %}
+                  <input type="text" name="searched">
+                  <button type="submit"><i class="bi bi-search"></i></button>
+                </form>
+              </div><!-- End sidebar search formn-->
+
+              <h3 class="sidebar-title">Categories</h3>
+              <div class="sidebar-item categories">
+                
+                 {% for cat in category %}
+                   <li> <b><a class="text-success " href="{% url 'blog:blog' %}?category={{cat.name}}">{{cat.name}}</a></b></li>
+                 {% endfor %}
+                      
+                
+              </div><!-- End sidebar categories-->
+
+              <h3 class="sidebar-title">Recent Posts</h3>
+
+
+              <div class="sidebar-item recent-posts">
+                {% for post in posts %}
+                 <div class="post-item clearfix">
+                  {% if post.thumbnail %}
+                     <img src="{{ post.thumbnail.url }}" alt="image not found">
+                  {% endif %}
+                  <h4><a href="{{ post.get_absolute_url }}">{{ post.headline }}</a></h4>
+                  <time datetime="2020-01-01">{{post.published}}</time>
+                 </div>
+                {% endfor %}
+
+              </div><!-- End sidebar recent posts-->
+
+              <h3 class="sidebar-title">Tags</h3>
+              <div class="sidebar-item tags">
+                <ul>
+                  <li><a href="#">App</a></li>
+                  <li><a href="#">IT</a></li>
+                  <li><a href="#">Business</a></li>
+                  <li><a href="#">Mac</a></li>
+                  <li><a href="#">Design</a></li>
+                  <li><a href="#">Office</a></li>
+                  <li><a href="#">Creative</a></li>
+                  <li><a href="#">Studio</a></li>
+                  <li><a href="#">Smart</a></li>
+                  <li><a href="#">Tips</a></li>
+                  <li><a href="#">Marketing</a></li>
+                </ul>
+              </div><!-- End sidebar tags-->
+
+            </div><!-- End sidebar -->
+
+          </div><!-- End blog sidebar -->
+
+        </div>
+
+      </div>
+    </section><!-- End Blog Single Section -->
+
+  </main><!-- End #main -->
+{% endblock %}
