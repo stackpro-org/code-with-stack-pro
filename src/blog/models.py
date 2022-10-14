@@ -6,10 +6,23 @@ from django.utils import timezone
 from django.urls import reverse
 from django.db.models import Q
 from . import utils
+
+from io import BytesIO
+from PIL import Image
+from django.core.files import File
+
+def compress(image):
+    im = Image.open(image)
+    im_io = BytesIO() 
+    im.save(im_io, 'JPEG', quality=10) 
+    new_image = File(im_io, name=image.name)
+    return new_image
+
+
 class Category(models.Model):
     name = models.CharField(max_length=25)
     def __str__(self):
-        return self.name
+      return self.name
 
 
 
@@ -70,13 +83,13 @@ class Post(models.Model):
 
       def save(self, *args, **kwargs):
         
-        # we find whole model by self 
-        print('self..........', self)
           
         if not self.slug:
 
             self.slug = utils.unique_slug_generator(self)
-    
+        if self.thumbnail:
+           new_image = compress(self.thumbnail)
+           self.thumbnail = new_image
         super().save(*args, **kwargs)
 
 

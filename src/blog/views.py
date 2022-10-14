@@ -1,7 +1,6 @@
 
 from django.shortcuts import render, get_object_or_404, redirect
 from header.models import Top_header, Header
-from footer.models import Top_footer1, Top_footer2, Top_footer4, Top_footer3
 from . models import *
 from .forms import *
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -29,10 +28,7 @@ def search(request):
     template = 'search.html'
     top_header = Top_header.objects.order_by()
     header = Header.objects.order_by()
-    top_footer1 = Top_footer1.objects.order_by()
-    top_footer2 = Top_footer2.objects.order_by()
-    top_footer3 = Top_footer3.objects.order_by()
-    top_footer4 = Top_footer4.objects.order_by()
+  
     if request.method == 'POST':
         searched = request.POST['searched']
         post = Post.objects.filter(headline__contains=searched)
@@ -42,20 +38,14 @@ def search(request):
             'posts': post,
             'top_headerdata': top_header,
             'headerdata': header,
-            'footer1': top_footer1,
-            'footer2': top_footer2,
-            'footer3': top_footer3,
-            'footer4': top_footer4,
+    
         }
         return render(request, template_name=template, context=context)
     else:
         context={
             'top_headerdata': top_header,
             'headerdata': header,
-            'footer1': top_footer1,
-            'footer2': top_footer2,
-            'footer3': top_footer3,
-            'footer4': top_footer4,
+ 
 
         }
         return render(request, template_name=template, context=context)
@@ -65,10 +55,6 @@ def blog(request):
     template = 'blog.html'
     top_header = Top_header.objects.order_by()
     header = Header.objects.order_by()
-    top_footer1 = Top_footer1.objects.order_by()
-    top_footer2 = Top_footer2.objects.order_by()
-    top_footer3 = Top_footer3.objects.order_by()
-    top_footer4 = Top_footer4.objects.order_by()
 
     cate = Category.objects.all()
     category_pick = request.GET.get('category')
@@ -92,10 +78,6 @@ def blog(request):
     context = {
         'top_headerdata': top_header,
         'headerdata': header,
-        'footer1': top_footer1,
-        'footer2': top_footer2,
-        'footer3': top_footer3,
-        'footer4': top_footer4,
         'posts': post,
         'page_ob': page,
         'category': cate,
@@ -109,10 +91,6 @@ def post_detail(request, slug):
     template = 'blog-single.html'
     top_header = Top_header.objects.order_by()
     header = Header.objects.order_by()
-    top_footer1 = Top_footer1.objects.order_by()
-    top_footer2 = Top_footer2.objects.order_by()
-    top_footer3 = Top_footer3.objects.order_by()
-    top_footer4 = Top_footer4.objects.order_by()
     cate = Category.objects.all()
 
     posts = Post.objects.filter(publish_status=Post.ArticlePublishOptions.PUBLISH)[0:3]
@@ -141,10 +119,6 @@ def post_detail(request, slug):
         'comments': comments,
         'posts': posts,
         'headerdata': header,
-        'footer1': top_footer1,
-        'footer2': top_footer2,
-        'footer3': top_footer3,
-        'footer4': top_footer4,
         'category': cate,
         'comment_form': comment_form,
         "new_comment": new_comment,
@@ -166,10 +140,6 @@ def edit_post(request, pk, sl):
 
     template = 'edit_post.html'
     header = Header.objects.order_by()
-    top_footer1 = Top_footer1.objects.order_by()
-    top_footer2 = Top_footer2.objects.order_by()
-    top_footer3 = Top_footer3.objects.order_by()
-    top_footer4 = Top_footer4.objects.order_by()
 
     if request.method == 'POST':
         post = get_object_or_404(Post, id=pk, slug=sl)
@@ -183,10 +153,6 @@ def edit_post(request, pk, sl):
     context = {
         'post_form': editpost,
         'headerdata': header,
-        'footer1': top_footer1,
-        'footer2': top_footer2,
-        'footer3': top_footer3,
-        'footer4': top_footer4,
     }
 
     return render(request, template_name=template, context=context)

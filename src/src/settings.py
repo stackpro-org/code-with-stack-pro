@@ -193,3 +193,34 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 GIPHY_URL = 'https://api.giphy.com/v1/gifs'
 API_KEY='YourOwnGiphYAPIKeysdfasjfdgdf'
+
+
+
+
+REST_FRAMEWORK = {
+# default authentication
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',# create token part 3
+        'rest_framework_simplejwt.authentication.JWTAuthentication', # simple jwt token
+    ],
+
+    # default permission
+    'DEFAULT_PERMISSION_CLASSES': [
+        # 'rest_framework.permissions.IsAuthenticated', # will work if authenticated
+        # 'rest_framework.permissions.IsAuthenticatedOrReadOnly', # will work if even not authenticated
+    ],
+
+
+ 
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 3,   # rest api pagination
+
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+
+
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema', #to have schema like http://localhost:8000/docs/
+    # 'DEFAULT_RENDERER_CLASSES':('rest_framework.renderers.JSONRenderer',)  # to have default renderer
+
+}

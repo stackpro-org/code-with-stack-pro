@@ -1,7 +1,6 @@
 from multiprocessing.spawn import import_main_path
 from django.shortcuts import render, redirect
 from header.models import Top_header, Header
-from footer.models import Top_footer1, Top_footer2, Top_footer4, Top_footer3
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .models import *
@@ -49,17 +48,11 @@ def account(request):
     template = 'account/account.html'
     top_header = Top_header.objects.order_by()
     header = Header.objects.order_by()
-    top_footer1 = Top_footer1.objects.order_by()
-    top_footer2 = Top_footer2.objects.order_by()
-    top_footer3 = Top_footer3.objects.order_by()
-    top_footer4 = Top_footer4.objects.order_by()
+    
     context = {
         'top_headerdata': top_header,
         'headerdata': header,
-        'footer1': top_footer1,
-        'footer2': top_footer2,
-        'footer3': top_footer3,
-        'footer4': top_footer4,
+
     }
 
     return render(request, template_name=template, context=context)
@@ -97,18 +90,12 @@ def authlogin(request):
     template = 'account/login.html'
     top_header = Top_header.objects.order_by()
     header = Header.objects.order_by()
-    top_footer1 = Top_footer1.objects.order_by()
-    top_footer2 = Top_footer2.objects.order_by()
-    top_footer3 = Top_footer3.objects.order_by()
-    top_footer4 = Top_footer4.objects.order_by()
+
 
     context = {
         'top_headerdata': top_header,
         'headerdata': header,
-        'footer1': top_footer1,
-        'footer2': top_footer2,
-        'footer3': top_footer3,
-        'footer4': top_footer4,
+
 
     }
 
@@ -154,10 +141,7 @@ def profile(request):
     template = 'account/profile.html'
     top_header = Top_header.objects.order_by()
     header = Header.objects.order_by()
-    top_footer1 = Top_footer1.objects.order_by()
-    top_footer2 = Top_footer2.objects.order_by()
-    top_footer3 = Top_footer3.objects.order_by()
-    top_footer4 = Top_footer4.objects.order_by()
+   
     profile = request.user
    
 
@@ -166,10 +150,7 @@ def profile(request):
     context = {
                 'top_headerdata': top_header,
              'headerdata': header,
-             'footer1': top_footer1,
-             'footer2': top_footer2,
-             'footer3': top_footer3,
-             'footer4': top_footer4,
+ 
              'profile': profile,
             
              
@@ -182,10 +163,7 @@ def user_profile(request, pk):
     template = 'account/profile.html'
     top_header = Top_header.objects.order_by()
     header = Header.objects.order_by()
-    top_footer1 = Top_footer1.objects.order_by()
-    top_footer2 = Top_footer2.objects.order_by()
-    top_footer3 = Top_footer3.objects.order_by()
-    top_footer4 = Top_footer4.objects.order_by()
+ 
     profile = Account.objects.get(id=pk)
 
    
@@ -193,10 +171,7 @@ def user_profile(request, pk):
     context = {
                 'top_headerdata': top_header,
              'headerdata': header,
-             'footer1': top_footer1,
-             'footer2': top_footer2,
-             'footer3': top_footer3,
-             'footer4': top_footer4,
+
              'profile': profile,
             
              
@@ -231,10 +206,7 @@ def update_profile(request):
     template = 'account/update_profile.html'
     top_header = Top_header.objects.order_by()
     header = Header.objects.order_by()
-    top_footer1 = Top_footer1.objects.order_by()
-    top_footer2 = Top_footer2.objects.order_by()
-    top_footer3 = Top_footer3.objects.order_by()
-    top_footer4 = Top_footer4.objects.order_by()
+
 
     if request.method == "POST":
         profile = request.user
@@ -251,10 +223,7 @@ def update_profile(request):
         'form': pform,
         'top_headerdata': top_header,
         'headerdata': header,
-        'footer1': top_footer1,
-        'footer2': top_footer2,
-        'footer3': top_footer3,
-        'footer4': top_footer4,
+    
     }
     return render(request, template_name=template, context=context)
 
