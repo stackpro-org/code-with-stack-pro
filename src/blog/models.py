@@ -10,7 +10,7 @@ from . import utils
 from io import BytesIO
 from PIL import Image
 from django.core.files import File
-
+print('hello')
 def compress(image):
     im = Image.open(image)
     im_io = BytesIO() 
