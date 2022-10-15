@@ -16,6 +16,7 @@ def compress(image):
     im_io = BytesIO() 
     im.save(im_io, 'JPEG', quality=10) 
     new_image = File(im_io, name=image.name)
+    print('hello')
     return new_image
 
 
