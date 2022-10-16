@@ -27,9 +27,7 @@ urlpatterns = [
 
     # password reset send
 
-    path('api/', include('account_api.urls'),)
-
-
+    # path('api/', include('account_api.urls'))
 
 
 ]
