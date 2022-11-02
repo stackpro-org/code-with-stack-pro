@@ -7,7 +7,6 @@ from header.models import Top_header, Header
 def about_page(request):
     template = 'about.html'
 
-
     count = Count.objects.order_by()
     testi2 = Testimonial2.objects.order_by()
     testi1 = Testimonial1.objects.order_by()
@@ -27,7 +26,6 @@ def about_page(request):
         'headerdata': header,
        
         
-
     }
 
     return render(request, template_name=template, context=context)
