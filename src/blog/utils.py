@@ -5,18 +5,6 @@ import uuid
 from django.utils.text import slugify
 
 
-# def get_article_image_upload_to(instance, filename):
-#     fpath = pathlib.Path(filename)
-#     fname = f"{uuid.uuid1()}{fpath.suffix}"
-#     slug = instance.slug
-#     if not slug:
-#         if instance.title:
-#             temp_slug = unique_slug_generator(instance)
-#         else:
-#             temp_slug = random_string_generator(size=15)
-#         slug = temp_slug
-#     return f"articles/{slug}/{fname}"
-
 
 def random_string_generator():
     
@@ -31,17 +19,13 @@ def random_string_generator():
 
 def unique_slug_generator(instance, new_slug=None):
     #by instance we get the following model
-    print('instance.....', instance)
- 
-
    
+
     if new_slug is not None:
         slug = new_slug
     else:
         slug = slugify(instance.headline)
-    
-    print('slugify...', slug)
-    
+
 
     # we access to 'blog.models.Post' by the bellow code
     Klass = instance.__class__

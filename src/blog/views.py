@@ -86,10 +86,11 @@ def blog(request):
     return render(request, template_name=template, context=context)
 
 
+
+
 def post_detail(request, slug):
 
     template = 'blog-single.html'
-    top_header = Top_header.objects.order_by()
     header = Header.objects.order_by()
     cate = Category.objects.all()
 
@@ -100,14 +101,11 @@ def post_detail(request, slug):
     if request.method == 'POST':
 
         comment_form = CommentForm(request.POST)
-
         if comment_form.is_valid():
-
 
             new_comment = comment_form.save(commit=False)
 
             new_comment.post = post
-
 
             new_comment.save()
 

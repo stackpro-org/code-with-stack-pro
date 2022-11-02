@@ -42,7 +42,6 @@ class AgentManager(models.Manager):
         return AgentQuerySet(self.model, using=self._db)
 
 
-
 class Post(models.Model):
       class ArticlePublishOptions(models.TextChoices):
          PUBLISH = "pub", "Publish"
@@ -81,12 +80,11 @@ class Post(models.Model):
             return self.headline
       
 
-      def save(self, *args, **kwargs):
-        
+      def save(self, *args, **kwargs):      
           
         if not self.slug:
-
             self.slug = utils.unique_slug_generator(self)
+
         if self.thumbnail:
            new_image = compress(self.thumbnail)
            self.thumbnail = new_image
