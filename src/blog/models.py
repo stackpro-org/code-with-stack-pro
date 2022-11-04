@@ -81,7 +81,7 @@ class Post(models.Model):
       
 
       def save(self, *args, **kwargs):      
-          
+        
         if not self.slug:
             self.slug = utils.unique_slug_generator(self)
 

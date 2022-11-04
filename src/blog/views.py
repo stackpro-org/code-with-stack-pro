@@ -83,6 +83,7 @@ def blog(request):
         'category': cate,
         
     }
+    
     return render(request, template_name=template, context=context)
 
 
