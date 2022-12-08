@@ -43,14 +43,11 @@ INSTALLED_APPS = [
     'account',
     'index',
     'blog',
-    'team',
-    'pricing',
     'portfolio',
     'header',
     'chat',
     'footer',
     'about',
-    'services',
     'contact',
         # external apps
     'ckeditor',
@@ -59,7 +56,6 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'django_filters',
     'rest_framework_simplejwt',
-    
 
 
 ]

@@ -7,7 +7,6 @@ from .models import *
 from . forms import ProfileForm
 from django.core.mail import send_mail
 from django.conf import settings
-from team.pdf import html_to_pdf
 from xhtml2pdf import pisa
 from django.http import HttpResponse
 from django.views.generic import View

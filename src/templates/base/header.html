@@ -32,12 +32,10 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="{% block homeactive %} {% endblock %}" href="{% url 'index'%}">Home</a></li>
-          <li><a class="{% block aboutactive %} {% endblock %}" href="{% url 'about'%}">About</a></li>
-          <li><a class="{% block serviceactive %} {% endblock %}" href="{% url 'services'%}">Services</a></li>
+          <li><a class="{% block teamactive %} {% endblock %}" href="http://localhost:8000/docs/">API</a></li>
           <li><a class="{% block portfolioactive %} {% endblock %}" href="{% url 'portfolio'%}">Portfolio</a></li>
-          <li><a class="{% block teamactive %} {% endblock %}" href="{% url 'team'%}">Team</a></li>
-          <li><a class="{% block pricingactive %} {% endblock %}" href="{% url 'index'%}">Pricing</a></li>
-          <li><a class="" href="{% url 'chat:friend_list'%}">Friends</a></li>
+          <li><a class="{% block aboutactive %} {% endblock %}" href="{% url 'about'%}">About</a></li>
+          <li><a class="" href="{% url 'chat:friend_list'%}">Chat</a></li>
           <li><a class="{% block blogactive %} {% endblock %}" href="{% url 'blog:blog'%}">Blog</a></li>
           <li><a class="{% block contactactive %}{% endblock %}" href="{% url 'contact'%}">Contact</a></li>
 

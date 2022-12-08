@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from .models import Hero, Featured
 from about.models import About, Client
-from services.models import Service
 from header.models import Top_header, Header
 
 
@@ -11,7 +10,6 @@ def index(request):
     feature = Featured.objects.order_by()
     about = About.objects.order_by()
     client = Client.objects.order_by()
-    service = Service.objects.order_by()
     top_header = Top_header.objects.order_by()
     header = Header.objects.order_by()
     
@@ -21,7 +19,6 @@ def index(request):
         'featuredata': feature,
         'aboutdata': about,
         'clientdata': client,
-        'servicedata': service,
         'top_headerdata': top_header,
         'headerdata': header,
     
