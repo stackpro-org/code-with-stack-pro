@@ -5,9 +5,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .models import *
 from . forms import ProfileForm
-from django.core.mail import send_mail
 from django.conf import settings
-from xhtml2pdf import pisa
+# from xhtml2pdf import pisa
 from django.http import HttpResponse
 from django.views.generic import View
 from account.models import Account
@@ -142,9 +141,6 @@ def profile(request):
     header = Header.objects.order_by()
    
     profile = request.user
-   
-
-    
 
     context = {
                 'top_headerdata': top_header,
@@ -179,21 +175,21 @@ def user_profile(request, pk):
 
     return render(request, template_name=template, context=context)
 
-class GeneratePdf(View):
-     def get(self, request, *args, **kwargs):
+# class GeneratePdf(View):
+#      def get(self, request, *args, **kwargs):
          
-        profile = request.user 
+#         profile = request.user 
 
      
       
 
-        context = {
-               'profile': profile,
+#         context = {
+#                'profile': profile,
               
-           }
-        pdf = html_to_pdf('pdf.html', context)
-             # rendering the template
-        return HttpResponse(pdf, content_type='application/pdf')
+#            }
+#         pdf = html_to_pdf('pdf.html', context)
+#              # rendering the template
+#         return HttpResponse(pdf, content_type='application/pdf')
 
 
 

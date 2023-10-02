@@ -5,11 +5,11 @@ from header.models import *
 #for CBV
 from django.views import View
 # for rest api
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
+# from rest_framework.decorators import api_view
+# from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework import status
-from rest_framework import generics
+# from rest_framework import status
+# from rest_framework import generics
 
 from . serializers import Contact_serializer
 
@@ -30,21 +30,21 @@ from . serializers import Contact_serializer
 
 
 
-# class Contact_api(APIView):
+class Contact_api(APIView):
 
-#     def post(self, request, format=None):
-#         serializer = Contact_serializer(data=request.data)
-#         if serializer.is_valid():
-#             serializer.save()
-#             return Response(serializer.data, status=status.HTTP_201_CREATED)
-#         return Response(serializer.data, status=status.HTTP_201_CREATED)
+    def post(self, request, format=None):
+        serializer = Contact_serializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
         
 
 
-class Contact_api(generics.CreateAPIView):
+# class Contact_api(generics.CreateAPIView):
 
-    queryset = Contact.objects.all()
-    serializer_class = Contact_serializer
+#     queryset = Contact.objects.all()
+#     serializer_class = Contact_serializer
         
 
 # from . serializers import Contact_serializer

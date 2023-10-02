@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'django_filters',
     'rest_framework_simplejwt',
+    'crispy_bootstrap4',
 
 
 ]
@@ -215,15 +216,15 @@ REST_FRAMEWORK = {
     # default permission
     'DEFAULT_PERMISSION_CLASSES': [
         # 'rest_framework.permissions.IsAuthenticated', # will work if authenticated
-        # 'rest_framework.permissions.IsAuthenticatedOrReadOnly', # will work if even not authenticated
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly', # will work if even not authenticated
     ],
 
 
  
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE': 3,   # rest api pagination
+#     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+#     'PAGE_SIZE': 3,   # rest api pagination
 
-    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+#     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
 
 
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema', #to have schema like http://localhost:8000/docs/

@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from header.models import Top_header, Header
 from .models import *
-from rest_framework import generics
-from.serializers import Portfolio_serializer
-from rest_framework.response import Response
-from rest_framework.views import APIView
+# from rest_framework import generics
+# from.serializers import Portfolio_serializer
+# from rest_framework.response import Response
+# from rest_framework.views import APIView
 
 def portfolio(request):
     template = 'portfolio.html'
@@ -31,9 +31,9 @@ def portfolio(request):
     }
     return render(request, template_name=template, context=context)
 
-class Portfolio_class(generics.ListAPIView):
-    queryset = Portfolio.objects.all()
-    serializer_class = Portfolio_serializer
+# class Portfolio_class(generics.ListAPIView):
+#     queryset = Portfolio.objects.all()
+#     serializer_class = Portfolio_serializer
     
 
         

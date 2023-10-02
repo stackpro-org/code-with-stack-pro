@@ -17,3 +17,7 @@ urlpatterns = [
     path('contact/', include('contact.urls')),
     path('docs/', include_docs_urls(title='Agency project')), #default schema
 ]+static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+
+
+
+
