@@ -217,8 +217,8 @@ REST_FRAMEWORK = {
     # default permission
     #permissions control what actions they are allowed to perform once they are authenticated.
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated', # will work if authenticated
-        # 'rest_framework.permissions.IsAuthenticatedOrReadOnly', # will work if even not authenticated
+        # 'rest_framework.permissions.IsAuthenticated', # will work if authenticated
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly', # will work if even not authenticated
     ],
 
 

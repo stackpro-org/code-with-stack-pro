@@ -2,7 +2,7 @@
 {% load static %}
 {% block title %}
 {% load crispy_forms_tags %}
- <title> portfolio-details </title>
+ <title> {{post.headline}} </title>
 {% endblock %}
 {% block portfolioactive %} active {% endblock %}
 {% block content %}
@@ -43,7 +43,7 @@
 
               <div class="entry-img">
                   {% if post.thumbnail %}
-                     <img src="{{ post.thumbnail.url }}" alt="image not found">
+                     <img class="img-thumbnail" src="{{ post.thumbnail.url }}" alt="image not found">
                   {% endif %}
               </div>
 

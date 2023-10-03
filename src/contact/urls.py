@@ -4,7 +4,6 @@ urlpatterns = [
     path('', views.contact, name='contact'),
 
     # rest app
-
     path('contact-api/', views.Contact_api.as_view())
 
 ]
