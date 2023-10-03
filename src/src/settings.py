@@ -210,7 +210,7 @@ REST_FRAMEWORK = {
 
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication',# create token part 3
-        'rest_framework_simplejwt.authentication.JWTAuthentication', # simple jwt token
+        # 'rest_framework_simplejwt.authentication.JWTAuthentication', # simple jwt token
     ],
 
     # default permission
