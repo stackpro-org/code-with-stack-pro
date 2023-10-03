@@ -71,7 +71,7 @@ h1, h2, h3, h4, h5, h6 {
 
 #topbar .contact-info i {
   font-style: normal;
-  color: #e96b56;
+  color: #0dcaf0;
 }
 
 #topbar .contact-info i a, #topbar .contact-info i span {
@@ -120,7 +120,7 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: 1px;
   text-transform: uppercase;
   font-family: "Poppins", sans-serif;
-  border-left: 8px solid #e96b56;
+  border-left: 8px solid #2a9664;
 }
 
 #header .logo h1 a, #header .logo h1 a:hover {
@@ -416,7 +416,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #hero h2 span {
-  color: #146c43;
+  color: #2a9664;
 }
 
 #hero p {
@@ -468,7 +468,7 @@ h1, h2, h3, h4, h5, h6 {
 
 #hero .carousel-indicators li {
   cursor: pointer;
-  background: #e96b56;
+  background: #0dcaf0;
   overflow: hidden;
   border: 0;
   width: 12px;
