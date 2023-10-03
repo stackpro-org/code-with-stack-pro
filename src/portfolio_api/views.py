@@ -11,7 +11,7 @@ from rest_framework.permissions import IsAdminUser,IsAuthenticated, AllowAny, Ba
 class List(generics.ListAPIView):
     queryset = Portfolio.objects.all()
     serializer_class = Portfolio_serializer
-    permission_classes = [IsAdminUser]
+    permission_classes = [IsAuthenticated]
     authentication_classes = [  
         authentication.SessionAuthentication,
         authentication.TokenAuthentication

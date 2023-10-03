@@ -1,5 +1,4 @@
 
-from rest_framework.decorators import permission_classes
 from blog.models import Post
 from rest_framework import permissions
 from rest_framework import authentication
@@ -23,6 +22,11 @@ class PostUserWritePermission(BasePermission):
 
 class Post_api(ListCreateAPIView):
     permission_classes = [IsAuthenticated]
+    
+    authentication_classes = [  
+        authentication.SessionAuthentication,
+        authentication.TokenAuthentication
+        ]
     
     queryset = Post.objects.all()
     serializer_class = Post_serializer
