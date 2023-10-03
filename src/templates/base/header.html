@@ -9,11 +9,11 @@
 
           {% if user.is_authenticated%}
                <a class="d-flex align-items-center ms-4" href="{%url 'logout'%}">Logout</a>
-               <a class="d-flex align-items-center ms-4" style="color:tomato;">{{user.username}}</a>
+               <a class="d-flex align-items-center ms-4" style="color:#0dcaf0">{{user.username}}</a>
           {% else %}
                <br/>
-              <a class="d-flex align-items-center ms-4" style="color:tomato;" href="{% url 'index'%}">Register</a></p>
-              <a class="d-flex align-items-center ms-4" style="color:tomato" href="{% url 'login'%}">Login</a></p>
+              <a class="d-flex align-items-center ms-4" style="color:#0dcaf0" href="{% url 'index'%}">Register</a></p>
+              <a class="d-flex align-items-center ms-4" style="color:#0dcaf0" href="{% url 'login'%}">Login</a></p>
           {% endif %}
       </div>
     </div>
