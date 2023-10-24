@@ -64,6 +64,7 @@ INSTALLED_APPS = [
 AUTH_USER_MODEL = "account.Account"
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -209,7 +210,7 @@ REST_FRAMEWORK = {
 # authentication deals with the user's identity and ensuring they are who they claim to be
     'DEFAULT_AUTHENTICATION_CLASSES': [
 
-        # 'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication',# create token part 3
         'rest_framework_simplejwt.authentication.JWTAuthentication', # simple jwt token
     ],
@@ -218,7 +219,7 @@ REST_FRAMEWORK = {
     #permissions control what actions they are allowed to perform once they are authenticated.
     'DEFAULT_PERMISSION_CLASSES': [
         # 'rest_framework.permissions.IsAuthenticated', # will work if authenticated
-        'rest_framework.permissions.IsAuthenticatedOrReadOnly', # will work if even not authenticated
+        # 'rest_framework.permissions.IsAuthenticatedOrReadOnly', # will work if even not authenticated
     ],
 
 
